@@ -11,27 +11,12 @@ if loglevel == '-d':
   logging.basicConfig(level=logging.DEBUG)
   logging.debug('set logging lvl to debug')
 
-icon_mapping = {
-'tourism:picnic_site': 'tourist_picnic',
-'tourism:theme_park': 'tourist_theme_park',
-'tourism:viewpoint': 'tourist_view_point',
-'tourism:zoo': 'tourist_zoo',
-'traffic_calming:yes': 'transport_speedbump',
+icon_folder = 'icons'
+icons = {
+'normal': 'club-mate_24x24_-12x-12.png',
+'retail': 'club-mate-retail_30x40_-12x-28.png',
+'served': 'club-mate-served_32x40_-12x-28.png',
 }
-
-def determine_icon(tags):
-  icon = 'vegan'
-  for kv in icon_mapping:
-    k,v = kv.split(':')
-    t = tags.get(k)
-    if not t:
-        continue
-    t = t.split(';')[0]
-    if t == v:
-      icon = icon_mapping[kv]
-      break
-  icon = icon.replace('-', '_')
-  return icon
 
 scriptdir = os.path.dirname(os.path.abspath(__file__))
 
@@ -73,12 +58,14 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
     else:
       name = '%s %s' % (typ, ide)
 
-    icon = determine_icon(tags)
 
-    if tags.get('diet:vegetarian', '') != "" and tags.get('diet:vegan', '') == "":
-      icon += "_veggie"
-    else:
-      icon += "_vegan"
+    if tags.get('drink:club-mate') == 'retail':
+      icon = icons['retail']
+    elif tags.get('drink:club-mate') == 'served':
+      icon = icons['served']
+    else
+      icon = icons['normal']
+
 
     popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
     if 'addr:street' in tags:
@@ -100,5 +87,5 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
       popup += 'phone: %s<br/>' % (tags['contact:phone'])
     elif 'phone' in tags:
       popup += 'phone: %s<br/>' % (tags['phone'])
-    f.write('  L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
+    f.write('  L.marker([%s, %s], {"title": "%s", icon: %s/%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon_folder, icon, popup.encode('utf-8')))
   f.write('}\n')
