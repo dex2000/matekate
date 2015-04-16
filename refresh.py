@@ -6,7 +6,10 @@ import simplejson
 import os
 import sys
 
-loglevel = sys.argv[1]
+try:
+  loglevel = sys.argv[1]
+except IndexError:
+  loglevel = None
 if loglevel == '-d':
   logging.basicConfig(level=logging.DEBUG)
   logging.debug('set logging lvl to debug')
@@ -25,7 +28,7 @@ json = simplejson.load(f)
 f.close()
 
 nodes = {}
-cnt = 0
+counter = 0
 
 with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
   logging.debug('enter file loop')
@@ -51,7 +54,7 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
     if not lat or not lon:
       logging.warn('Element id=%s has missing lat=%s or lon=%s', e['id'], lat, lon)
 
-    cnt += 1
+    counter += 1
 
     if 'name' in tags:
       name = tags['name']
@@ -63,7 +66,7 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
       icon = icons['retail']
     elif tags.get('drink:club-mate') == 'served':
       icon = icons['served']
-    else
+    else:
       icon = icons['normal']
 
 
@@ -89,6 +92,8 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
       popup += 'phone: %s<br/>' % (tags['contact:phone'])
     elif 'phone' in tags:
       popup += 'phone: %s<br/>' % (tags['phone'])
-    f.write('  L.marker([%s, %s], {"title": "%s", icon: %s/%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon_folder, icon, popup.encode('utf-8')))
+    f.write('  L.marker([%s, %s], {"title": "%s", "icon": "%s/%s"}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon_folder, icon, popup.encode('utf-8')))
   f.write('}\n')
+
+logging.info('added %i elements to data file', counter)
 
