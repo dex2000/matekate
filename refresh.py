@@ -14,13 +14,6 @@ if loglevel == '-d':
   logging.basicConfig(level=logging.DEBUG)
   logging.debug('set logging lvl to debug')
 
-icon_folder = 'icons'
-icons = {
-'normal': 'club-mate_24x24_-12x-12.png',
-'retail': 'club-mate-retail_30x40_-12x-28.png',
-'served': 'club-mate-served_32x40_-12x-28.png',
-}
-
 scriptdir = os.path.dirname(os.path.abspath(__file__))
 
 f = urllib2.urlopen('http://overpass-api.de/api/interpreter?data=[out:json];(node["drink:club-mate"~"."];>;way["drink:club-mate"~"."];>;);out;')
@@ -63,11 +56,11 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
 
 
     if tags.get('drink:club-mate') == 'retail':
-      icon = icons['retail']
+      icon = "icon_retail"
     elif tags.get('drink:club-mate') == 'served':
-      icon = icons['served']
+      icon = "icon_served"
     else:
-      icon = icons['normal']
+      icon = "icon_normal"
 
 
     popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
@@ -92,7 +85,7 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
       popup += 'phone: %s<br/>' % (tags['contact:phone'])
     elif 'phone' in tags:
       popup += 'phone: %s<br/>' % (tags['phone'])
-    f.write('  L.marker([%s, %s], {"title": "%s", "icon": "%s/%s"}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon_folder, icon, popup.encode('utf-8')))
+    f.write('  L.marker([%s, %s], {"title": "%s", "icon": %s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
   f.write('}\n')
 
 logging.info('added %i elements to data file', counter)
