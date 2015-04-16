@@ -75,6 +75,8 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
     if 'addr:country' in tags:
       popup += '%s<br/>' % (tags.get('addr:country', ''))
     popup += '<hr/>'
+    if 'opening_hours' in tags:
+      popup += 'opening hours: %s<br/>' % (tags['opening_hours'])
     if 'contact:website' in tags:
       popup += 'website: <a href=\\"%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['contact:website'], tags['contact:website'])
     elif 'website' in tags:
