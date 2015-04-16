@@ -55,7 +55,7 @@ L.Control.OSMGeocoder = L.Control.extend({
 			L.DomEvent.addListener(container, 'mouseover', this._expand, this);
 			L.DomEvent.addListener(container, 'mouseout', this._collapse, this);
 
-			var link = this._layersLink = L.DomUtil.create('a', className + '-toggle', container);
+			var link = this._layersLink = L.DomUtil.create('span', className + '-toggle fa fa-search', container);
 			link.href = '#';
 			link.title = 'Nominatim Geocoder';
 
