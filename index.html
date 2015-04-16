@@ -64,6 +64,10 @@
 
     L.control.locate().addTo(map);
 
+    scale = L.control.scale();
+    scale.setPosition('bottomright');
+    scale.addTo(map);
+
     var hash = new L.Hash(map);
   }
   </script>
