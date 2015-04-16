@@ -29,7 +29,7 @@ cnt = 0
 
 with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
   logging.debug('enter file loop')
-  f.write('function veganmap_populate(markers) {\n')
+  f.write('function mate_locations_populate(markers) {\n')
   for e in json['elements']:
     lat = e.get('lat', None)
     lon = e.get('lon', None)
@@ -89,3 +89,4 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
       popup += 'phone: %s<br/>' % (tags['phone'])
     f.write('  L.marker([%s, %s], {"title": "%s", icon: %s/%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon_folder, icon, popup.encode('utf-8')))
   f.write('}\n')
+
