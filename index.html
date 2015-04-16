@@ -41,14 +41,19 @@
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-  
+
+    // Marker Clusters
     var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 40});
     mate_locations_populate(markers);
     map.addLayer(markers);
 
+    // Locate Button
+    L.control.locate().addTo(map);
+
+    // Search Box
     var options = {
       collapsed: true, /* Whether its collapsed or not */
-      position: 'bottomleft', /* The position of the control */
+      position: 'topleft', /* The position of the control */
       text: 'Locate', /* The text of the submit button */
       bounds: null, /* a L.LatLngBounds object to limit the results to */
       email: null, /* an email string with a contact to provide to Nominatim. Useful if you are doing lots of queries */
@@ -63,12 +68,12 @@
     var osmGeocoder = new L.Control.OSMGeocoder(options);
     map.addControl(osmGeocoder);
 
-    L.control.locate().addTo(map);
-
+    // Scale
     scale = L.control.scale();
     scale.setPosition('bottomright');
     scale.addTo(map);
 
+    // Hash URL
     var hash = new L.Hash(map);
   }
   </script>
