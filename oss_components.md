@@ -1,5 +1,6 @@
 # List of OSS components
 
+* http://fortawesome.github.io/Font-Awesome/
 * https://github.com/domoritz/leaflet-locatecontrol
 * https://github.com/Leaflet/Leaflet.markercluster
 * https://github.com/mlevans/leaflet-hash
