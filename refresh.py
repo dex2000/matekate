@@ -57,14 +57,14 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
 
     if typ == 'node':
       nodes[ide] = (lat,lon)
-      if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only' and tags.get('diet:vegetarian') != 'only' and tags.get('diet:vegetarian') != 'yes':
-        continue
 
     if typ == 'way':
       lat, lon = nodes[e['nodes'][0]] # extract coordinate of first node
 
+    logging.debug('Element id=%s lat=%s or lon=%s', e['id'], lat, lon)
+
     if not lat or not lon:
-      continue
+      logging.warn('Element id=%s has missing lat=%s or lon=%s', e['id'], lat, lon)
 
     cnt += 1
 
