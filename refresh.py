@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import cgi
-import urllib
+import logging
 import urllib2
 import simplejson
 import os
