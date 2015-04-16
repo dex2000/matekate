@@ -4,9 +4,10 @@
   <title>Matekarte</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel="stylesheet" href="css/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="css/leaflet/MarkerCluster.Default.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="https://raw.githubusercontent.com/Leaflet/Leaflet.markercluster/master/dist/leaflet.markercluster.js"></script>
-  <script src="js/club-mate-data.js"></script>
   <style type="text/css">
     #map {
       position: absolute;
@@ -17,8 +18,14 @@
       margin: 0;
     }
   </style>
+  <script src="js/icons.js"></script>
+  <script src="js/club-mate-data.js"></script>
   <script type="text/javascript">
   function clubmatemap() {
+    var icon_folder = 'icons';
+    var icon_normal = L.icon({iconUrl: icon_folder + '/club-mate_24x24_-12x-12.png', iconSize: [24, 24] });
+    var icon_retail = L.icon({iconUrl: icon_folder + '/club-mate-retail_30x40_-12x-28.png', iconSize: [30, 40] });
+    var icon_served = L.icon({iconUrl: icon_folder + '/club-mate-served_32x40_-12x-28.png', iconSize: [32, 40] });
     // create a map in the "map" div, set the view to a given place and zoom
     var map = L.map('map').setView([50.813, 10.437], 7);
   
@@ -27,7 +34,7 @@
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
   
-    var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 16});
+    var markers = new L.MarkerClusterGroup({maxClusterRadius: 40});
     mate_locations_populate(markers);
     map.addLayer(markers);
   }
