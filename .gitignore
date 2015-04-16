@@ -2,5 +2,8 @@
 __pycache__/
 *.py[cod]
 
-# ignore data file
+# data file
 js/club-mate-data.js
+
+# vim
+*.swp
