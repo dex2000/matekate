@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Matekarte</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="https://raw.githubusercontent.com/Leaflet/Leaflet.markercluster/master/dist/leaflet.markercluster.js"></script>
+  <script src="js/club-mate-data.js"></script>
+  <style type="text/css">
+    #map {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+    body {
+      margin: 0;
+    }
+  </style>
+  <script type="text/javascript">
+  function clubmatemap() {
+    // create a map in the "map" div, set the view to a given place and zoom
+    var map = L.map('map').setView([50.813, 10.437], 7);
+  
+    // add an OpenStreetMap tile layer
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+  
+    var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 16});
+    mate_locations_populate(markers);
+    map.addLayer(markers);
+  }
+  </script>
+</head>
+<body onload="clubmatemap()">
+  <div id="map"></div>
+</body>
+</html>
