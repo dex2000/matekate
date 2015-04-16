@@ -4,6 +4,12 @@ import logging
 import urllib2
 import simplejson
 import os
+import sys
+
+loglevel = sys.argv[1]
+if loglevel == '-d':
+  logging.basicConfig(level=logging.DEBUG)
+  logging.debug('set logging lvl to debug')
 
 icon_mapping = {
 'tourism:picnic_site': 'tourist_picnic',
@@ -29,7 +35,7 @@ def determine_icon(tags):
 
 scriptdir = os.path.dirname(os.path.abspath(__file__))
 
-f = urllib2.urlopen('http://overpass-api.de/api/interpreter?data=[out:json];(node["drink:club-mate"~"."];way["drink:club-mate"~"."];);out;')
+f = urllib2.urlopen('http://overpass-api.de/api/interpreter?data=[out:json];(node["drink:club-mate"~"."];>;way["drink:club-mate"~"."];>;);out;')
 json = simplejson.load(f)
 f.close()
 
@@ -37,12 +43,14 @@ nodes = {}
 cnt = 0
 
 with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
+  logging.debug('enter file loop')
   f.write('function veganmap_populate(markers) {\n')
   for e in json['elements']:
     lat = e.get('lat', None)
     lon = e.get('lon', None)
     typ = e['type']
     tags = e.get('tags', {})
+    logging.debug('Element id=%s type=%s tags=%s', e['id'], typ, tags)
     for k in tags.keys():
         tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
     ide = e['id']
