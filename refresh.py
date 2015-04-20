@@ -17,7 +17,12 @@ if loglevel == '-d':
 scriptdir = os.path.dirname(os.path.abspath(__file__))
 
 f = urllib2.urlopen('http://overpass-api.de/api/interpreter?data=[out:json];(node["drink:club-mate"~"."];>;way["drink:club-mate"~"."];>;);out;')
-json = simplejson.load(f)
+try:
+  json = simplejson.load(f)
+except simplejson.JSONDecodeError, e:
+  print(e)
+  sys.exit(1)
+
 f.close()
 
 nodes = {}
@@ -89,4 +94,5 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
   f.write('}\n')
 
 logging.info('added %i elements to data file', counter)
+sys.exit(0)
 
