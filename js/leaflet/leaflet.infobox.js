@@ -20,7 +20,7 @@
     },
 
     initialize: function (options) {
-      L.Util.setOptions(this, options;
+      L.Util.setOptions(this, options);
     },
 
     onAdd: function (map) {
