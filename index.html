@@ -10,12 +10,14 @@
   <link rel="stylesheet" href="css/leaflet/Control.OSMGeocoder.css" />
   <link rel="stylesheet" href="css/leaflet/L.Control.Locate.min.css" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/leaflet/Infobox.css" />
 
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="js/leaflet/leaflet.markercluster.js"></script>
   <script src="js/leaflet/leaflet-hash.js"></script>
   <script src="js/leaflet/Control.OSMGeocoder.js"></script>
   <script src="js/leaflet/L.Control.Locate.min.js"></script>
+  <script src="js/leaflet/leaflet.infobox.js"></script>
   <style type="text/css">
     #map {
       position: absolute;
@@ -75,10 +77,14 @@
 
     // Hash URL
     var hash = new L.Hash(map);
+
+    // Infobox
+    L.control.infobox().addTo(map);
   }
   </script>
 </head>
 <body onload="clubmatemap()">
   <div id="map"></div>
+  <div id="infobox"><h1>Infobox</h1><p>Das ist eine Infobox</p></div>
 </body>
 </html>
