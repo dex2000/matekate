@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Matekarte</title>
+  <title>Mateka'te</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
@@ -52,6 +52,13 @@
     // Locate Button
     L.control.locate().addTo(map);
 
+    // Infobox
+    L.control.infobox().addTo(map);
+    var closebar = document.getElementById("closebar");
+    closebar.onclick = function() {
+      document.getElementById("infobox").style.display = "none";
+    };
+
     // Search Box
     var options = {
       collapsed: true, /* Whether its collapsed or not */
@@ -77,14 +84,33 @@
 
     // Hash URL
     var hash = new L.Hash(map);
-
-    // Infobox
-    L.control.infobox().addTo(map);
   }
   </script>
 </head>
 <body onload="clubmatemap()">
   <div id="map"></div>
-  <div id="infobox"><h1>Infobox</h1><p>Das ist eine Infobox</p></div>
+  <div id="infobox">
+    <h1>Mateka'te</h1>
+    <h2>Zweck</h2>
+    <p>Diese Karte stellt alle auf <a href="http://www.openstreetmap.org">OpenStreetMap</a> eingetragen Orte, in denen man <a href="http://www.clubmate.de/">Club-Mate</a> käuflich erwerben kann, dar. </p>
+    <h2>Legende</h2>
+    <p>
+      Die in der Karte verwendeten Symbole haben die folgende Bedeutung: <br />
+      <img src="icons/club-mate_24x24_-12x-12.png" alt="" /> Es gibt hier Club-Mate.</br >
+      <img src="icons/club-mate-retail_30x40_-12x-28.png" alt="" /> Es gibt hier Club-Mate für Wiederverkäufer.</br >
+      <img src="icons/club-mate-served_32x40_-12x-28.png" alt="" /> Es gibt hier Club-Mate serviert (z.B. Restaurant, Bar, Club, …).</br >
+    </p>
+    <h2>Fundort eintragen</h2>
+    <p>Da <a href="http://www.openstreetmap.org">OpenStreetMap</a> ein Projekt ist, bei dem jeder mitmachen kann, ist es natürlich auch möglich, weitere Punkte, an denen Cub-Mate gekauft werden kann, hinzuzufügen. Weitere Verkaufsorte von Club-Mate können in Openstreetmap mit dem Tag <a href="http://wiki.openstreetmap.org/wiki/Key:drink:club-mate">drink:club-mate</a> versehen werden und erscheinen nach einiger Zeit hier in dieser Karte. Im Wiki der CCCMz Mateka'te existiert eine ausführliche Anleitung, <a href="https://github.com/cccmzwi/matekate/wiki/Neuen-Mate-Punkt-anlegen">wie man neuen Punkt anlegt und ihm Tags hinzufügt</a>.</p>
+    <h2>Danksagungen</h2>
+    <p>Diese Karte wurde inspiriert von
+      <ul>
+        <li>der <a href="https://cccmz.de/matekate">Matekarte des CCCMz</a>, die leider nicht mehr aktualisert wird,</li>
+        <li>dem Projekt matekarte.de von Pascal, das aufgrund von persönlichen Gründen nicht mehr weiter geführt wird und</li>
+        <li>dem Projekt <a href="http://veggiekarte.de">veggiekarte.de</a> von Benjamin, das besonders viele Anregungen zur Gestaltung von dieser Mateka'te beigetragen hat.</li>
+      </ul>
+    </p>
+    <div id="closebar">Schließen</div>
+  </div>
 </body>
 </html>
