@@ -32,14 +32,14 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
   logging.debug('enter file loop')
   f.write('function mate_locations_populate(markers) {\n')
   for e in json['elements']:
+    ide = e['id']
     lat = e.get('lat', None)
     lon = e.get('lon', None)
     typ = e['type']
     tags = e.get('tags', {})
-    logging.debug('Element id=%s type=%s tags=%s', e['id'], typ, tags)
+    logging.debug('Element id=%s type=%s tags=%s', ide, typ, tags)
     for k in tags.keys():
         tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
-    ide = e['id']
 
     if typ == 'node':
       nodes[ide] = (lat,lon)
@@ -47,26 +47,25 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
     if typ == 'way':
       lat, lon = nodes[e['nodes'][0]] # extract coordinate of first node
 
-    logging.debug('Element id=%s lat=%s or lon=%s', e['id'], lat, lon)
+    logging.debug('Element id=%s lat=%s lon=%s', ide, lat, lon)
 
     if not lat or not lon:
-      logging.warn('Element id=%s has missing lat=%s or lon=%s', e['id'], lat, lon)
-
-    counter += 1
+      logging.warn('Element id=%s has missing lat=%s or lon=%s', ide, lat, lon)
 
     if 'name' in tags:
       name = tags['name']
     else:
       name = '%s %s' % (typ, ide)
 
-
-    if tags.get('drink:club-mate') == 'retail':
+    if tags.get('drink:club-mate') == None:
+      logging.debug('This node has no tag drink:club-mate at all')
+      continue
+    elif tags.get('drink:club-mate') == 'retail':
       icon = "icon_retail"
     elif tags.get('drink:club-mate') == 'served':
       icon = "icon_served"
     else:
       icon = "icon_normal"
-
 
     popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
     if 'addr:street' in tags:
@@ -90,7 +89,10 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
       popup += 'phone: %s<br/>' % (tags['contact:phone'])
     elif 'phone' in tags:
       popup += 'phone: %s<br/>' % (tags['phone'])
+
     f.write('  L.marker([%s, %s], {"title": "%s", "icon": %s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
+    counter += 1
+
   f.write('}\n')
 
 logging.info('added %i elements to data file', counter)
