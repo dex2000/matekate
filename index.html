@@ -32,10 +32,6 @@
   <script src="js/club-mate-data.js"></script>
   <script type="text/javascript">
   function clubmatemap() {
-    var icon_folder = 'icons';
-    var icon_normal = L.icon({iconUrl: icon_folder + '/club-mate_24x24_-12x-12.png', iconSize: [24, 24] });
-    var icon_retail = L.icon({iconUrl: icon_folder + '/club-mate-retail_30x40_-12x-28.png', iconSize: [30, 40] });
-    var icon_served = L.icon({iconUrl: icon_folder + '/club-mate-served_32x40_-12x-28.png', iconSize: [32, 40] });
     // create a map in the "map" div, set the view to a given place and zoom
     var map = L.map('map').setView([51.159, 9.976], 6);
   
@@ -97,8 +93,8 @@
     <p>
       Die in der Karte verwendeten Symbole haben die folgende Bedeutung: <br />
       <img src="icons/club-mate_24x24_-12x-12.png" alt="" /> Es gibt hier Club-Mate.</br >
-      <img src="icons/club-mate-retail_30x40_-12x-28.png" alt="" /> Es gibt hier Club-Mate für Wiederverkäufer.</br >
-      <img src="icons/club-mate-served_32x40_-12x-28.png" alt="" /> Es gibt hier Club-Mate serviert (z.B. Restaurant, Bar, Club, …).</br >
+      <!--img src="icons/club-mate-retail_30x40_-12x-28.png" alt="" /> Es gibt hier Club-Mate für Wiederverkäufer.</br >
+      <img src="icons/club-mate-served_32x40_-12x-28.png" alt="" /> Es gibt hier Club-Mate serviert (z.B. Restaurant, Bar, Club, …).</br -->
     </p>
     <h2>Fundort eintragen</h2>
     <p>Da <a href="http://www.openstreetmap.org">OpenStreetMap</a> ein Projekt ist, bei dem jeder mitmachen kann, ist es natürlich auch möglich, weitere Punkte, an denen Cub-Mate gekauft werden kann, hinzuzufügen. Weitere Verkaufsorte von Club-Mate können in Openstreetmap mit dem Tag <a href="http://wiki.openstreetmap.org/wiki/Key:drink:club-mate">drink:club-mate</a> versehen werden und erscheinen nach einiger Zeit hier in dieser Karte. Im Wiki der CCCMz Mateka'te existiert eine ausführliche Anleitung, <a href="https://github.com/cccmzwi/matekate/wiki/Neuen-Mate-Punkt-anlegen">wie man neuen Punkt anlegt und ihm Tags hinzufügt</a>.</p>
