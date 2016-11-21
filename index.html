@@ -39,7 +39,7 @@
     }).addTo(map);
 
     // Marker Clusters
-    var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 40});
+    var markers = new L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 40});
     mate_locations_populate(markers);
     map.addLayer(markers);
 

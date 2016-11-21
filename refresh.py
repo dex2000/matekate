@@ -90,7 +90,7 @@ with open(scriptdir + '/js/club-mate-data.js', 'w') as f:
     elif 'phone' in tags:
       popup += 'phone: %s<br/>' % (tags['phone'])
 
-    f.write('  L.marker([%s, %s], {"title": "%s", "icon": %s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
+    f.write('  markers.addLayer(L.marker([%s, %s], {"title": "%s", "icon": %s}).bindPopup("%s"));\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
     counter += 1
 
   f.write('}\n')
