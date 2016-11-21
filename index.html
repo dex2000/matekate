@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="css/leaflet/leaflet.css" />
   <link rel="stylesheet" href="css/leaflet/MarkerCluster.css" />
   <link rel="stylesheet" href="css/leaflet/MarkerCluster.ClubMate.css" />
-  <link rel="stylesheet" href="css/leaflet/Control.Geocoder.css" />
   <link rel="stylesheet" href="css/leaflet/L.Control.Locate.min.css" />
   <link rel="stylesheet" href="css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/leaflet/Infobox.css" />
@@ -15,7 +14,6 @@
   <script src="js/leaflet/leaflet.js"></script>
   <script src="js/leaflet/leaflet.markercluster.js"></script>
   <script src="js/leaflet/leaflet-hash.js"></script>
-  <script src="js/leaflet/Control.Geocoder.js"></script>
   <script src="js/leaflet/L.Control.Locate.min.js"></script>
   <script src="js/leaflet/leaflet.infobox.js"></script>
   <style type="text/css">
@@ -54,24 +52,6 @@
     closebar.onclick = function() {
       document.getElementById("infobox").style.display = "none";
     };
-
-    // Search Box
-    var options = {
-      collapsed: true, /* Whether its collapsed or not */
-      position: 'topleft', /* The position of the control */
-      text: 'Locate', /* The text of the submit button */
-      bounds: null, /* a L.LatLngBounds object to limit the results to */
-      email: null, /* an email string with a contact to provide to Nominatim. Useful if you are doing lots of queries */
-      callback: function (results) {
-        var bbox = results[0].boundingbox,
-            first = new L.LatLng(bbox[0], bbox[2]),
-            second = new L.LatLng(bbox[1], bbox[3]),
-            bounds = new L.LatLngBounds([first, second]);
-        this._map.fitBounds(bounds);
-      }
-    };
-    var osmGeocoder = new L.Control.OSMGeocoder(options);
-    map.addControl(osmGeocoder);
 
     // Scale
     scale = L.control.scale();
