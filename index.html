@@ -10,12 +10,14 @@
   <link rel="stylesheet" href="css/leaflet/L.Control.Locate.min.css" />
   <link rel="stylesheet" href="css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/leaflet/Infobox.css" />
+  <link rel="stylesheet" href="css/leaflet/Control.Geocoder.css" />
 
   <script src="js/leaflet/leaflet.js"></script>
   <script src="js/leaflet/leaflet.markercluster.js"></script>
   <script src="js/leaflet/leaflet-hash.js"></script>
   <script src="js/leaflet/L.Control.Locate.min.js"></script>
   <script src="js/leaflet/leaflet.infobox.js"></script>
+  <script src="js/leaflet/Control.Geocoder.js"></script>
   <style type="text/css">
     #map {
       position: absolute;
@@ -52,6 +54,9 @@
     closebar.onclick = function() {
       document.getElementById("infobox").style.display = "none";
     };
+
+    // Search
+    L.Control.geocoder({position: 'topleft', placeholder: 'Suche…', errorMessage: 'Keine Ergebnisse gefunden.'}).addTo(map);
 
     // Scale
     scale = L.control.scale();
