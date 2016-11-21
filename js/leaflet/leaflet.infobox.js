@@ -26,7 +26,6 @@
     onAdd: function (map) {
       var container = L.DomUtil.create('div','leaflet-control-infobox leaflet-bar leaflet-control');
       this._link = L.DomUtil.create('a', 'leaflet-bar-part leaflet-bar-part-single', container);
-      this._link.href = '#';
       this._icon = L.DomUtil.create('span', this.options.icon, this._link);
       this._map = map;
       this._container = container;

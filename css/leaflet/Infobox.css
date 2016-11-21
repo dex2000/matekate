@@ -3,13 +3,13 @@
   padding: 10px;
   margin: auto;  
   position: absolute;
-  z-index: 7;
+  z-index: 10000;
 
   width: 40%;
   top: 10px;
   right: 10px;
 
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 5px #bbb;
   color: rgb(33, 58, 98);
 }
