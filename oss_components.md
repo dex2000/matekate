@@ -1,10 +1,16 @@
 # List of OSS components
 
-* http://fortawesome.github.io/Font-Awesome/
-* https://github.com/domoritz/leaflet-locatecontrol
-* https://github.com/Leaflet/Leaflet.markercluster
-* https://github.com/mlevans/leaflet-hash
-* https://github.com/k4r573n/leaflet-control-osm-geocoder
+* http://www.openstreetmap.org/
+
 * http://leafletjs.com/
+
+* https://github.com/Leaflet/Leaflet.markercluster
+* https://github.com/domoritz/leaflet-locatecontrol
+* https://github.com/perliedman/leaflet-control-geocoder
+* https://github.com/mlevans/leaflet-hash
+
+* http://fontawesome.io/
+
 * https://github.com/cccmzwi/matekate
 * https://github.com/piratenpanda/veggiekarte
+
